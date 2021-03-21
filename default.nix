@@ -14,6 +14,14 @@ let
     in
     if results != [ ] then
       builtins.throw (builtins.concatStringsSep "\n" (map resultToString results))
+    ## TODO: The derivation below is preferable but "nix flake check" hangs with it:
+    ##       (it's preferable because "examples/many-failures" would then show all errors.)
+    # pkgs.runCommand "nix-flake-tests-failure" { } ''
+    #   cat <<EOF
+    #   ${builtins.concatStringsSep "\n" (map resultToString results)}
+    #   EOF
+    #   exit 1
+    # ''
     else
       pkgs.runCommand "nix-flake-tests-success" { } "echo > $out";
   lib = {

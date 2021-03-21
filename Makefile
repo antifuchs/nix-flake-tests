@@ -1,4 +1,8 @@
-test: failing-tests successful-tests
+test: failing-tests successful-tests many-failures
+
+many-failures:
+	cd examples/many-failures && \
+	if nix flake check --no-write-lock-file 2>/dev/null ; then echo "expected the tests to fail!" ; exit 1; fi
 
 failing-tests:
 	cd examples/failing-tests && \
