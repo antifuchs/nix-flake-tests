@@ -13,11 +13,14 @@
     {
       checks = {
         basic =
-          nix-flake-tests.lib.check system (pkgs.lib.runTests {
-            testNumbers = { expected = 1; expr = 1; };
-            testList = { expected = [ "hi" ]; expr = [ "hi" ]; };
-            testAttrs = { expected = { hi = "there"; }; expr = { hi = "there"; }; };
-          });
+          nix-flake-tests.lib.check {
+            inherit pkgs;
+            tests = {
+              testNumbers = { expected = 1; expr = 1; };
+              testList = { expected = [ "hi" ]; expr = [ "hi" ]; };
+              testAttrs = { expected = { hi = "there"; }; expr = { hi = "there"; }; };
+            };
+          };
       };
     });
 }
