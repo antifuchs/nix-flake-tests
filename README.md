@@ -19,7 +19,7 @@ A very basic inline example is this:
   description = "a set of successful tests";
 
   inputs = {
-    nix-flake-tests.url = "github:antifuchs/nix-flake-tests"
+    nix-flake-tests.url = "github:antifuchs/nix-flake-tests";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
