@@ -3,7 +3,10 @@
 
   inputs = { };
 
-  outputs = { self }: {
+  outputs = { self }: rec {
     lib = import ./.;
+    overlays.default = final: prev: {
+      nix-flake-tests = tests: lib.check {inherit tests; pkgs = final;};
+    };
   };
 }
