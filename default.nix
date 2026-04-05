@@ -3,7 +3,7 @@ let
     let
       system = pkgs.stdenv.targetPlatform.system;
       formatValue = val:
-        if (builtins.isList val || builtins.isAttrs val || builtins.isString || builtins.isBool val) then builtins.toJSON val
+        if (builtins.isList val || builtins.isAttrs val || builtins.isString val || builtins.isBool val) then builtins.toJSON val
         else builtins.toString val;
       resultToString = { name, expected, result }: ''
         ${name} failed: expected ${formatValue expected}, but got ${
